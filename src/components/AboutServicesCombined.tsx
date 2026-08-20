@@ -118,7 +118,7 @@ export const AboutServicesCombined: React.FC = () => {
                 Hands-On Direct Attention
               </h3>
               <p className="text-sm sm:text-base text-neutral-300 leading-relaxed font-normal">
-                Hook Frames Studio is led by [your name], with Kira as our on-camera creative presenter, and a small network of collaborators for larger projects. We're a lean, hands-on team — every project gets direct attention, not handed off to a large agency pipeline.
+                Hook Frames Studio is run by a small, focused team — a founder handling creative direction and production, Kira as our on-camera presenter, and a network of collaborators we bring in for larger projects. No account managers, no handoffs — you work directly with the people making your content.
               </p>
             </div>
 

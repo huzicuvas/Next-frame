@@ -11,7 +11,7 @@ export const Contact: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const pricingTiers = [
+  const standardTiers = [
     {
       id: 'tier-15-30s',
       name: '15-30 Second Video',
@@ -32,7 +32,7 @@ export const Contact: React.FC = () => {
       id: 'tier-60s',
       name: '60 Second Video',
       price: '$140',
-      specs: '1 version • Full narrative',
+      specs: '1 version • 60s runtime narrative',
       subject: 'Inquiry for 60 Second Video',
       body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for a full 60-second in-depth narrative video ad ($140 / 1 version).%0A%0ABrand Name: %0AProduct / Service Link: %0ACore Message / Proof Points: %0A",
     },
@@ -40,19 +40,20 @@ export const Contact: React.FC = () => {
       id: 'tier-hook-pack',
       name: 'Hook Variation Pack',
       price: 'Get a Quote',
-      specs: '3 videos • 15-30s each • 3 different hooks',
+      specs: '3 videos • 15-30s each • 3 hooks',
       subject: 'Inquiry for Hook Variation Pack',
       body: "Hi Hook Frames Studio Team,%0A%0AWe want to request a quote for a 3-video Hook Variation Pack (3 videos, 15-30s each, with 3 distinct opening hooks).%0A%0ABrand Name: %0AProduct Link: %0ATarget Ad Platform (Meta / TikTok): %0A",
     },
-    {
-      id: 'tier-custom',
-      name: 'Custom Brand Package',
-      price: 'Get a Quote',
-      specs: 'Longer videos, multiple products, or monthly batches',
-      subject: 'Inquiry for Custom Brand Package',
-      body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for custom brand production (longer videos, multiple products/SKUs, or ongoing monthly content).%0A%0ABrand Name: %0ANumber of SKUs / Monthly Volume: %0ATimeline & Goals: %0A",
-    },
   ];
+
+  const customTier = {
+    id: 'tier-custom',
+    name: 'Custom Brand Package',
+    price: 'Get a Quote',
+    specs: 'Longer videos, multiple products/SKUs, or ongoing monthly content batches',
+    subject: 'Inquiry for Custom Brand Package',
+    body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for custom brand production (longer videos, multiple products/SKUs, or ongoing monthly content).%0A%0ABrand Name: %0ANumber of SKUs / Monthly Volume: %0ATimeline & Goals: %0A",
+  };
 
   return (
     <section
@@ -117,35 +118,68 @@ export const Contact: React.FC = () => {
                 Select a Tier for Instant Pre-filled Email:
               </span>
               <span className="text-[11px] font-mono text-blue-400 hidden sm:inline">
-                5 Transparent Tiers
+                Transparent Packages
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {pricingTiers.map((tier) => (
+            {/* 2-Column Grid for 4 Core Packages (2 per row on mobile & desktop) */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {standardTiers.map((tier) => (
                 <a
                   key={tier.id}
                   id={`tier-button-${tier.id}`}
                   href={`mailto:${email}?subject=${encodeURIComponent(tier.subject)}&body=${tier.body}`}
-                  className="group block p-4 rounded-2xl bg-neutral-950 hover:bg-neutral-800/90 border border-neutral-800 hover:border-blue-500/50 transition-all duration-200 hover:scale-[1.02] shadow-sm"
+                  className="group flex flex-col justify-between p-3.5 sm:p-4 rounded-2xl bg-neutral-950 hover:bg-neutral-800/90 border border-neutral-800 hover:border-blue-500/50 transition-all duration-200 hover:scale-[1.01] shadow-sm"
                 >
-                  <div className="flex items-start justify-between gap-2 mb-1">
-                    <span className="text-xs font-bold text-white group-hover:text-blue-300 transition-colors">
-                      {tier.name}
-                    </span>
-                    <span className="px-2 py-0.5 rounded-full bg-blue-500/15 border border-blue-500/30 text-[11px] font-bold font-mono text-blue-300 shrink-0">
-                      {tier.price}
-                    </span>
+                  <div>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 mb-1.5">
+                      <span className="text-xs sm:text-sm font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-1">
+                        {tier.name}
+                      </span>
+                      <span className="self-start sm:self-auto px-2 py-0.5 rounded-full bg-blue-500/15 border border-blue-500/30 text-[10px] sm:text-[11px] font-bold font-mono text-blue-300 shrink-0">
+                        {tier.price}
+                      </span>
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-neutral-400 font-mono line-clamp-2">
+                      {tier.specs}
+                    </p>
                   </div>
-                  <p className="text-[11px] text-neutral-400 font-mono line-clamp-2">
-                    {tier.specs}
-                  </p>
-                  <div className="mt-2.5 flex items-center gap-1 text-[10px] font-mono text-neutral-400 group-hover:text-white transition-colors">
-                    <span>Pre-fill email inquiry</span>
-                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                  <div className="mt-3 flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                    <span className="truncate">Pre-fill email inquiry</span>
+                    <ArrowRight className="w-3 h-3 shrink-0 transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </a>
               ))}
+            </div>
+
+            {/* Single Full-Width Card for Custom Brand Package */}
+            <div className="mt-3 sm:mt-4">
+              <a
+                id={`tier-button-${customTier.id}`}
+                href={`mailto:${email}?subject=${encodeURIComponent(customTier.subject)}&body=${customTier.body}`}
+                className="group block p-4 sm:p-5 rounded-2xl bg-neutral-950 hover:bg-neutral-800/90 border border-neutral-800 hover:border-blue-500/50 transition-all duration-200 hover:scale-[1.01] shadow-sm"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs sm:text-sm font-bold text-white group-hover:text-blue-300 transition-colors">
+                      {customTier.name}
+                    </span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-300 border border-neutral-700 hidden xs:inline">
+                      Multi-SKU & Batch
+                    </span>
+                  </div>
+                  <span className="self-start sm:self-auto px-2.5 py-0.5 rounded-full bg-blue-500/15 border border-blue-500/30 text-[10px] sm:text-[11px] font-bold font-mono text-blue-300 shrink-0">
+                    {customTier.price}
+                  </span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-neutral-400 font-mono">
+                  {customTier.specs}
+                </p>
+                <div className="mt-2.5 flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-neutral-400 group-hover:text-white transition-colors">
+                  <span>Pre-fill email inquiry</span>
+                  <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                </div>
+              </a>
             </div>
           </div>
 
