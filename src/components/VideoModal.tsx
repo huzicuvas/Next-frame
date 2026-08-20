@@ -252,7 +252,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ video, onClose }) => {
           {/* Direct CTA */}
           <div className="pt-5 border-t border-neutral-800 flex flex-col sm:flex-row items-center gap-2.5">
             <a
-              href={`mailto:hello@nextframe.studio?subject=Request%20Creative%20in%20Style%20of%20${encodeURIComponent(video.title)}&body=Hi%20Nextframe%20team,%0A%0AWe%20love%20the%20${encodeURIComponent(video.title)}%20(${video.category})%20creative%20and%20want%20to%20produce%20something%20similar%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AOur%20Product%20Link:%20%0A`}
+              href={`mailto:hello@hookframes.studio?subject=Request%20Creative%20in%20Style%20of%20${encodeURIComponent(video.title)}&body=Hi%20Hook%20Frames%20Studio%20team,%0A%0AWe%20love%20the%20${encodeURIComponent(video.title)}%20(${video.category})%20creative%20format%20and%20want%20to%20produce%20something%20similar%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AOur%20Product%20Link:%20%0A`}
               className="flex items-center justify-center gap-2 w-full py-3.5 px-5 rounded-full bg-white hover:bg-blue-500 hover:text-white text-black text-xs font-bold transition-all"
             >
               <Send className="w-3.5 h-3.5" />

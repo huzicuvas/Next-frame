@@ -41,7 +41,7 @@ export const WorkflowSection: React.FC = () => {
             id="workflow-title"
             className="text-3xl sm:text-4xl font-bold text-white tracking-tight"
           >
-            How Nextframe delivers ad content fast
+            How Hook Frames Studio delivers ad content fast
           </h2>
           <p className="text-sm sm:text-base text-neutral-400">
             A frictionless, crewless ad production pipeline built for high-growth paid social teams.

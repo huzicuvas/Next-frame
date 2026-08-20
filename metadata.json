@@ -1,6 +1,7 @@
 {
-  "name": "Nextframe - AI Content Studio",
-  "description": "Portfolio site for Nextframe, an AI content studio showcasing UGC and CGI ad content for modern brands.",
+  "name": "Hook Frames Studio - AI Content Studio",
+  "description": "Portfolio site for Hook Frames Studio, an AI content studio showcasing UGC and CGI ad content for modern brands.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
+

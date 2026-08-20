@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Mail, ArrowUpRight, Menu, X, Video } from 'lucide-react';
+import { HookFramesLogo } from './HookFramesLogo';
 
 interface NavbarProps {
   onOpenContact?: () => void;
@@ -19,8 +20,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   const navLinks = [
     { name: 'Portfolio', href: '#portfolio' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
+    { name: 'Services', href: '#about' },
+    { name: 'Pricing', href: '#pricing' },
+    { name: 'Q&A & Studio FAQ', href: '#faq-assistant' },
     { name: 'Workflow', href: '#workflow' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -35,23 +37,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Logo */}
+        {/* Brand Logo with exact Dark Background Icon + White Typography */}
         <a
           href="#"
           id="nav-logo"
-          className="group flex items-center gap-3 focus:outline-none"
+          className="group flex items-center focus:outline-none"
         >
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 text-white font-mono text-xs font-bold group-hover:border-neutral-700 transition-colors">
-            <span className="text-blue-500 font-black tracking-tighter">NF</span>
-          </div>
-          <div className="flex flex-col">
-            <h1 className="text-white text-xl sm:text-2xl font-bold tracking-tighter leading-none flex items-center">
-              NEXTFRAME<span className="text-blue-500">.</span>
-            </h1>
-            <p className="text-[10px] uppercase tracking-widest text-neutral-500 font-mono mt-0.5">
-              AI Content Production Studio
-            </p>
-          </div>
+          <HookFramesLogo size="md" />
         </a>
 
         {/* Desktop Nav Links */}
@@ -71,11 +63,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
         <div className="hidden md:flex items-center gap-4">
           <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 bg-neutral-900 border border-neutral-800 px-3 py-1.5 rounded-full">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">GPU CLUSTER ONLINE</span>
+            <span className="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider">AI PIPELINE READY</span>
           </div>
 
           <a
-            href="mailto:hello@nextframe.studio?subject=Ad%20Content%20Inquiry%20-%20Nextframe%20Studio&body=Hi%20Nextframe%20team,%0A%0AWe're%20looking%20to%20produce%20ad%20creatives%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AFormat%20Needed%20(UGC%20/%20CGI%20/%20Hook%20Pack):%20%0AEstimated%20Timeline:%20%0A"
+            href="mailto:hello@hookframes.studio?subject=Ad%20Content%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20looking%20to%20produce%20high-converting%20ad%20creatives%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AFormat%20Needed%20(Single%20Video%20/%20Hook%20Pack%20/%2060s%20Video%20/%20Custom):%20%0AEstimated%20Timeline:%20%0A"
             id="nav-cta-mailto"
             className="group inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-black text-xs font-bold hover:bg-blue-500 hover:text-white transition-colors duration-200 shadow-md active:scale-95"
           >
@@ -118,10 +110,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           <div className="pt-3 border-t border-neutral-800 flex flex-col gap-3">
             <div className="flex items-center gap-2 text-xs font-mono text-neutral-400 px-1">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span>GPU Cluster Online • 48h Turnaround</span>
+              <span>AI Pipeline Online • 48h Turnaround</span>
             </div>
             <a
-              href="mailto:hello@nextframe.studio?subject=Ad%20Content%20Inquiry%20-%20Nextframe%20Studio"
+              href="mailto:hello@hookframes.studio?subject=Ad%20Content%20Inquiry%20-%20Hook%20Frames%20Studio"
               className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white hover:bg-blue-500 hover:text-white text-black text-sm font-bold transition-colors"
             >
               <Mail className="w-4 h-4" />

@@ -3,7 +3,7 @@ import { Mail, Copy, Check, ArrowRight, Sparkles, Send, Clock, ShieldCheck } fro
 
 export const Contact: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const email = 'hello@nextframe.studio';
+  const email = 'hello@hookframes.studio';
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
@@ -13,19 +13,24 @@ export const Contact: React.FC = () => {
 
   const emailTemplates = [
     {
-      label: '⚡ 5-Hook UGC Test Pack',
-      subject: 'UGC 5-Hook Creative Test Inquiry',
-      body: "Hi Nextframe Team,%0A%0AWe want to test a 5-hook UGC ad package for our brand.%0A%0ABrand Name: %0AProduct URL: %0A",
+      label: '⚡ Single Video ($75)',
+      subject: 'Single Video Ad Inquiry ($75)',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe want to order a single video ad for our brand.%0A%0ABrand Name: %0AProduct URL: %0AAd Angle Idea: %0A",
     },
     {
-      label: '✨ 3D CGI Product Ad',
-      subject: 'CGI Product Ad Production Inquiry',
-      body: "Hi Nextframe Team,%0A%0AWe're looking for a photorealistic 3D CGI video ad for an upcoming launch.%0A%0ABrand Name: %0AProduct Category: %0A",
+      label: '🔥 Hook Variation Pack ($200)',
+      subject: 'Hook Variation Pack Inquiry ($200)',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe want to test a 3-video Hook Variation Pack for our brand.%0A%0ABrand Name: %0AProduct URL: %0ATarget Platform (Meta/TikTok): %0A",
     },
     {
-      label: '📦 Monthly Ad Retainer',
-      subject: 'Monthly Ad Creative Retainer Inquiry',
-      body: "Hi Nextframe Team,%0A%0AWe spend over $20k/mo on paid ads and are looking for continuous weekly creative iterations.%0A%0ABrand Name: %0ACurrent Ad Spend: %0A",
+      label: '🎬 60-Second Video ($150)',
+      subject: '60-Second Video Ad Inquiry ($150)',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for a full 60-second in-depth video ad.%0A%0ABrand Name: %0AProduct Category: %0A",
+    },
+    {
+      label: '📦 Custom Brand Package',
+      subject: 'Custom Brand Package & Retainer Inquiry',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for custom monthly volume or multi-SKU video ad production.%0A%0ABrand Name: %0AMonthly Volume / SKUs: %0A",
     },
   ];
 
@@ -56,12 +61,12 @@ export const Contact: React.FC = () => {
           {/* Primary Mailto Action */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
             <a
-              href={`mailto:${email}?subject=New%20Ad%20Creative%20Inquiry%20-%20Nextframe%20Studio&body=Hi%20Nextframe%20Team,%0A%0AWe're%20interested%20in%20creating%20performance%20ad%20content%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AFormat%20Needed%20(UGC%20/%20CGI%20/%20Hook%20Pack):%20%0ATarget%20Launch%20Date:%20%0A`}
+              href={`mailto:${email}?subject=New%20Ad%20Creative%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20interested%20in%20creating%20performance%20ad%20content%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AFormat%20Needed%20(Single%20Video%20/%20Hook%20Pack%20/%2060s%20Video%20/%20Custom):%20%0ATarget%20Launch%20Date:%20%0A`}
               id="contact-mailto-btn"
               className="group flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-white hover:bg-blue-500 hover:text-white text-black text-sm font-bold transition-all duration-200 shadow-lg active:scale-95"
             >
               <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              <span>Email Nextframe Studio</span>
+              <span>Email Hook Frames Studio</span>
             </a>
 
             {/* Quick 1-Click Email Copy */}
@@ -88,7 +93,7 @@ export const Contact: React.FC = () => {
           {/* Quick Inquiry Presets */}
           <div className="mt-10 pt-8 border-t border-neutral-800 max-w-2xl mx-auto">
             <span className="text-xs font-mono text-neutral-500 uppercase tracking-wider block mb-3">
-              One-click starter templates:
+              One-click tier starter templates:
             </span>
             <div className="flex flex-wrap items-center justify-center gap-2">
               {emailTemplates.map((template, idx) => (
@@ -117,7 +122,7 @@ export const Contact: React.FC = () => {
             <span className="text-neutral-700">•</span>
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-neutral-400" />
-              <span>Zero lock-in retainer</span>
+              <span>48h fast delivery</span>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUp, Mail, Video, Sparkles, Heart } from 'lucide-react';
+import { HookFramesLogo } from './HookFramesLogo';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -14,15 +15,8 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-neutral-800/80">
           {/* Logo & Tagline */}
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2">
-              <span className="text-white text-lg font-bold tracking-tighter">
-                NEXTFRAME<span className="text-blue-500">.</span>
-              </span>
-              <span className="text-[10px] font-mono text-neutral-400 px-2 py-0.5 rounded-full bg-neutral-900 border border-neutral-800">
-                AI Studio
-              </span>
-            </div>
+          <div className="space-y-2">
+            <HookFramesLogo size="sm" />
             <p className="text-xs text-neutral-500 max-w-sm">
               Ad content for brands, delivered fast. AI-powered UGC & CGI video ads for Meta, TikTok, and YouTube Shorts.
             </p>
@@ -31,14 +25,15 @@ export const Footer: React.FC = () => {
           {/* Quick Links */}
           <div className="flex flex-wrap items-center gap-5 text-xs font-mono text-neutral-400">
             <a href="#portfolio" className="hover:text-white transition-colors">Portfolio</a>
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#services" className="hover:text-white transition-colors">Services</a>
+            <a href="#about" className="hover:text-white transition-colors">Services</a>
+            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+            <a href="#faq-assistant" className="hover:text-white transition-colors">Studio Q&A</a>
             <a href="#workflow" className="hover:text-white transition-colors">Workflow</a>
             <a
-              href="mailto:hello@nextframe.studio"
+              href="mailto:hello@hookframes.studio"
               className="text-white hover:text-blue-400 font-bold transition-colors"
             >
-              hello@nextframe.studio
+              hello@hookframes.studio
             </a>
           </div>
 
@@ -57,14 +52,14 @@ export const Footer: React.FC = () => {
         {/* Bottom copyright line */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-mono">
           <div>
-            © {new Date().getFullYear()} Nextframe Content Studio. All rights reserved.
+            © {new Date().getFullYear()} Hook Frames Studio. All rights reserved.
           </div>
           <div className="flex items-center gap-4 text-neutral-500">
             <span>UGC Avatars</span>
             <span>•</span>
             <span>3D CGI Simulations</span>
             <span>•</span>
-            <span>Performance Hooks</span>
+            <span>Hook Variations</span>
           </div>
         </div>
       </div>

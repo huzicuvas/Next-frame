@@ -35,3 +35,14 @@ export interface FAQItem {
   question: string;
   answer: string;
 }
+
+export type ChatMode = 'faq' | 'pricing' | 'process' | 'strategist';
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+  modelUsed?: string;
+  modeUsed?: ChatMode;
+}

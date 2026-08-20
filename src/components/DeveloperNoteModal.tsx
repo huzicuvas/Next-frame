@@ -17,18 +17,25 @@ export const DeveloperNoteModal: React.FC<DeveloperNoteModalProps> = ({ isOpen, 
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
-  const nextJsExportSnippet = `// 🚀 Deploying to Vercel / GitHub
-// 1. Initialize git and commit:
+  const deploySnippet = `// 🚀 OPTION A: Deploying via GitHub to Vercel / Render / Netlify
+// 1. Export or copy the project files to a local folder or push to GitHub:
 git init
 git add .
-git commit -m "feat: Nextframe AI Content Studio Portfolio"
-
-// 2. Push to GitHub:
-git remote add origin https://github.com/YOUR_USER/nextframe-portfolio.git
+git commit -m "feat: Hook Frames Studio Portfolio"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/hook-frames-studio.git
 git push -u origin main
 
-// 3. Deploy to Vercel:
-// Import the repo in vercel.com — it builds instantly with 'npm run build' (Vite/React/Next)!`;
+// 2. Import into Vercel (https://vercel.com/new):
+// - Framework Preset: Vite
+// - Build Command: npm run build
+// - Output Directory: dist
+// - Environment Variables: Add GEMINI_API_KEY = your_gemini_api_key
+
+// 3. For Full-Stack Express Server (Render / Railway / Cloud Run / Docker):
+// - Build Command: npm run build
+// - Start Command: npm start (which runs "node dist/server.cjs")
+// - Port: 3000`;
 
   const swapVideoSnippet = `// 🎥 In src/data/portfolioData.ts:
 {
@@ -99,7 +106,7 @@ git push -u origin main
             </span>
             <button
               type="button"
-              onClick={() => copySnippet(nextJsExportSnippet, 'deploy')}
+              onClick={() => copySnippet(deploySnippet, 'deploy')}
               className="text-xs font-mono text-neutral-400 hover:text-white flex items-center gap-1"
             >
               {copiedCode === 'deploy' ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
@@ -107,7 +114,7 @@ git push -u origin main
             </button>
           </div>
           <pre className="p-3.5 bg-neutral-950 rounded-2xl border border-neutral-800 text-[11px] font-mono text-neutral-300 overflow-x-auto">
-            {nextJsExportSnippet}
+            {deploySnippet}
           </pre>
         </div>
 
