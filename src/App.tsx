@@ -127,9 +127,8 @@ export default function App() {
           <main>
             {/* Hero Section */}
             <Hero
-              onExplorePortfolio={handleExplorePortfolio}
+              onStartProject={handleGetQuote}
               onSelectFeaturedVideo={handleSelectFeaturedVideo}
-              onGetQuote={handleGetQuote}
             />
 
             {/* Homepage Portfolio Grid (Exactly 4 videos in 2x2 with View Full Gallery CTA) */}
