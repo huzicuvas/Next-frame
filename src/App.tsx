@@ -12,7 +12,7 @@ import { DeveloperNoteModal } from './components/DeveloperNoteModal';
 import { GalleryPage } from './components/GalleryPage';
 import { PORTFOLIO_VIDEOS } from './data/portfolioData';
 import { VideoItem } from './types';
-import { Code2, Bot } from 'lucide-react';
+import { Bot, MessageSquare, X, Code2, Sparkles } from 'lucide-react';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -25,6 +25,7 @@ export default function App() {
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
   const [isDevGuideOpen, setIsDevGuideOpen] = useState(false);
   const [isFloatingChatOpen, setIsFloatingChatOpen] = useState(false);
+  const [showChatTooltip, setShowChatTooltip] = useState(true);
 
   // Sync route on popstate (browser back/forward)
   useEffect(() => {
@@ -35,6 +36,15 @@ export default function App() {
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Auto-dismiss tooltip after 7 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowChatTooltip(false);
+    }, 7000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const navigateTo = (path: string) => {
@@ -71,6 +81,11 @@ export default function App() {
     setSelectedVideo(PORTFOLIO_VIDEOS[0]);
   };
 
+  const handleOpenChat = () => {
+    setShowChatTooltip(false);
+    setIsFloatingChatOpen(true);
+  };
+
   const isGalleryView = currentPath === '/gallery' || currentPath === '/gallery/';
 
   return (
@@ -88,6 +103,7 @@ export default function App() {
           <Navbar
             onNavigateToGallery={navigateToGallery}
             onNavigateHome={navigateHome}
+            onOpenChat={handleOpenChat}
           />
 
           <main>
@@ -104,33 +120,11 @@ export default function App() {
               onNavigateToGallery={navigateToGallery}
             />
 
-            {/* Combined About & Specialized Services Section */}
+            {/* Combined About & Specialized Services Section + About the Team */}
             <AboutServicesCombined />
 
             {/* 48h Production Workflow */}
             <WorkflowSection />
-
-            {/* Gemini Studio Q&A & Pricing Section */}
-            <section id="faq-assistant" className="py-16 bg-[#0A0A0B] border-t border-neutral-800/80">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-2xl mb-10">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-mono text-neutral-300 mb-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                    <span>INTERACTIVE STUDIO Q&A & PRICING DESK</span>
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
-                    What We Make, How We Make It, & <br />
-                    <span className="text-neutral-400">Pricing & Commercial Terms.</span>
-                  </h2>
-                  <p className="text-sm sm:text-base text-neutral-400 mt-2 font-normal">
-                    Ask our interactive studio assistant anything about deliverables, batch pricing, the 48-hour production pipeline, or commercial rights.
-                  </p>
-                </div>
-
-                {/* Embedded Bento Chatbot */}
-                <GeminiChatbot />
-              </div>
-            </section>
 
             {/* Quick-Tier Contact & Pricing Section (Single source of pricing) */}
             <Contact />
@@ -147,32 +141,68 @@ export default function App() {
         onClose={() => setSelectedVideo(null)}
       />
 
-      {/* Floating Action Controls */}
+      {/* Floating Circular Chat & Helper Widget */}
       <aside
-        id="floating-actions-bar"
-        className="fixed bottom-4 right-4 z-40 flex items-center gap-2.5"
-        aria-label="Floating tools"
+        id="floating-chat-widget"
+        className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2.5 select-none"
+        aria-label="Interactive Studio Assistant"
       >
-        <button
-          type="button"
-          id="open-floating-ai-btn"
-          onClick={() => setIsFloatingChatOpen(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-2xl transition-all hover:scale-105 active:scale-95 border border-blue-400/30"
-        >
-          <Bot className="w-4 h-4" />
-          <span>Ask Q&A & Pricing</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-        </button>
+        {/* First-load One-time Tooltip / Popup */}
+        {showChatTooltip && !isFloatingChatOpen && (
+          <div
+            id="chat-tooltip-popup"
+            onClick={handleOpenChat}
+            className="group relative cursor-pointer bg-neutral-900 text-white text-xs font-medium px-4 py-3 rounded-2xl border border-neutral-700 shadow-2xl backdrop-blur-md flex items-center gap-3 transition-all hover:scale-105 animate-in fade-in slide-in-from-bottom-2 duration-300 max-w-xs"
+          >
+            <div className="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+              <Sparkles className="w-3.5 h-3.5" />
+            </div>
+            <div className="flex-1 pr-1 leading-snug">
+              <p className="text-neutral-200">Ask a question? I'm here to help</p>
+            </div>
+            <button
+              type="button"
+              id="dismiss-tooltip-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowChatTooltip(false);
+              }}
+              title="Dismiss"
+              className="text-neutral-400 hover:text-white p-1 rounded-md hover:bg-neutral-800 transition-colors"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
 
-        <button
-          type="button"
-          onClick={() => setIsDevGuideOpen(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-neutral-900/90 hover:bg-neutral-800 border border-neutral-800 text-xs font-mono text-neutral-300 hover:text-white backdrop-blur-md shadow-xl transition-all hover:scale-105 active:scale-95"
-        >
-          <Code2 className="w-3.5 h-3.5 text-blue-400" />
-          <span className="hidden sm:inline">Swap Assets & Deploy</span>
-          <span className="sm:hidden">Dev Guide</span>
-        </button>
+            {/* Speech bubble pointer arrow */}
+            <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-neutral-900 border-r border-b border-neutral-700 rotate-45 transform" />
+          </div>
+        )}
+
+        <div className="flex items-center gap-2">
+          {/* Discrete Dev Guide Trigger */}
+          <button
+            type="button"
+            onClick={() => setIsDevGuideOpen(true)}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-neutral-900/90 hover:bg-neutral-800 border border-neutral-800 text-[11px] font-mono text-neutral-400 hover:text-white backdrop-blur-md shadow-lg transition-all"
+            title="Developer asset swapping & build notes"
+          >
+            <Code2 className="w-3 h-3 text-blue-400" />
+            <span>Dev Guide</span>
+          </button>
+
+          {/* Floating Circular Chat Button */}
+          <button
+            type="button"
+            id="floating-circular-chat-btn"
+            onClick={handleOpenChat}
+            title="Ask a question? Open Studio Assistant"
+            className="w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-500 text-white shadow-2xl flex items-center justify-center border border-blue-400/40 transition-all duration-200 hover:scale-110 active:scale-95 group relative focus:outline-none focus:ring-2 focus:ring-blue-400/50"
+          >
+            <Bot className="w-6 h-6 transition-transform group-hover:rotate-6" />
+            {/* Live indicator dot */}
+            <span className="w-3 h-3 rounded-full bg-emerald-400 border-2 border-neutral-950 absolute top-0.5 right-0.5 animate-pulse" />
+          </button>
+        </div>
       </aside>
 
       {/* Floating Gemini Chat Modal */}

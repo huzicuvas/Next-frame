@@ -6,12 +6,14 @@ interface NavbarProps {
   onOpenContact?: () => void;
   onNavigateToGallery?: () => void;
   onNavigateHome?: () => void;
+  onOpenChat?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenContact,
   onNavigateToGallery,
   onNavigateHome,
+  onOpenChat,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -27,11 +29,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navLinks = [
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Gallery', href: '/gallery', isGallery: true },
-    { name: 'Services', href: '#about' },
-    { name: 'Pricing & Quotes', href: '#contact' },
-    { name: 'Q&A & Studio FAQ', href: '#faq-assistant' },
+    { name: 'About & Services', href: '#about' },
     { name: 'Workflow', href: '#workflow' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Pricing & Quotes', href: '#contact' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent, link: typeof navLinks[0]) => {
