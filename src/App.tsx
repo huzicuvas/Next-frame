@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { PortfolioGrid } from './components/PortfolioGrid';
 import { AboutServicesCombined } from './components/AboutServicesCombined';
 import { WorkflowSection } from './components/WorkflowSection';
+import { FaqSection } from './components/FaqSection';
 import { GeminiChatbot } from './components/GeminiChatbot';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -142,6 +143,9 @@ export default function App() {
 
             {/* 48h Production Workflow */}
             <WorkflowSection />
+
+            {/* FAQ Section */}
+            <FaqSection />
 
             {/* Quick-Tier Contact & Pricing Section (Single source of pricing) */}
             <Contact />

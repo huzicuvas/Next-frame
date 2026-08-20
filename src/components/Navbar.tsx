@@ -31,6 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { name: 'Gallery', href: '/gallery', isGallery: true },
     { name: 'About & Services', href: '#about' },
     { name: 'Workflow', href: '#workflow' },
+    { name: 'FAQ', href: '#faq' },
     { name: 'Pricing & Quotes', href: '#contact' },
   ];
 

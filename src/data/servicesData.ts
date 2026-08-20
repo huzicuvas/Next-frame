@@ -30,7 +30,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Studio-grade volumetric lighting & cinematic camera passes',
     ],
     turnaround: '48–72 Hours',
-    badge: 'Cinematic 4K',
+    badge: '3D CGI',
     iconName: 'Sparkles',
   },
   {
