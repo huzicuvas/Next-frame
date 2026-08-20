@@ -9,13 +9,15 @@ export const WorkflowSection: React.FC = () => {
       description: 'Provide your website, product photos, or key selling angles. No shipping samples required for CGI — digital assets are all we need.',
       icon: <UploadCloud className="w-5 h-5 text-blue-400" />,
       tag: 'Step 1 • 15 Mins',
+      highlight: 'Zero physical shipping delays',
     },
     {
       step: '02',
-      title: 'Generative AI & 3D CGI Pipeline',
-      description: 'We generate authentic creator scripts, synthetic UGC avatar performances, and 3D fluid/exploded visual effects with studio lighting.',
+      title: '3D CGI & UGC Ad Generation',
+      description: 'We generate 3D CGI ads for your product and creator-led video spots, featuring studio lighting, dynamic camera motion, and photorealistic visual effects.',
       icon: <Cpu className="w-5 h-5 text-blue-400" />,
       tag: 'Step 2 • 24 Hours',
+      highlight: 'Photorealistic 3D CGI & video ads',
     },
     {
       step: '03',
@@ -23,6 +25,7 @@ export const WorkflowSection: React.FC = () => {
       description: 'Get final 9:16 and 1:1 cut-downs with captions, sound effects, and organized naming taxonomy ready to drop straight into Ads Manager.',
       icon: <Layers className="w-5 h-5 text-blue-400" />,
       tag: 'Step 3 • 48 Hours',
+      highlight: 'Ad-manager ready exports & variations',
     },
   ];
 
@@ -75,7 +78,7 @@ export const WorkflowSection: React.FC = () => {
 
               <div className="pt-4 border-t border-neutral-800 flex items-center gap-2 text-xs font-mono text-neutral-400">
                 <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-                <span>Zero talent scheduling friction</span>
+                <span>{item.highlight}</span>
               </div>
             </div>
           ))}

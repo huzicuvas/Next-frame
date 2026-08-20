@@ -71,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({
                 id="hero-tagline-sub"
                 className="text-base sm:text-lg text-neutral-400 max-w-xl font-normal leading-relaxed"
               >
-                Hook Frames Studio produces high-converting <span className="text-white font-medium">UGC-style creator ads</span> and <span className="text-white font-medium">photorealistic CGI product videos</span> using generative AI pipelines.
+                We generate high-converting <span className="text-white font-medium">3D CGI ads</span> and <span className="text-white font-medium">UGC-style product videos</span> for your brand — broadcast-ready in as little as 48 hours.
               </p>
             </div>
 
