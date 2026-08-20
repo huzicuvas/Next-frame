@@ -27,15 +27,33 @@ export default function App() {
   const [isFloatingChatOpen, setIsFloatingChatOpen] = useState(false);
   const [showChatTooltip, setShowChatTooltip] = useState(true);
 
-  // Sync route on popstate (browser back/forward)
+  // Sync route on popstate (browser back/forward) and deep-linked video hash
   useEffect(() => {
+    const checkHashForVideo = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const found = PORTFOLIO_VIDEOS.find((v) => v.id === hash);
+        if (found) {
+          setSelectedVideo(found);
+        }
+      }
+    };
+
     const handlePopState = () => {
       setCurrentPath(window.location.pathname);
+      checkHashForVideo();
       window.scrollTo(0, 0);
     };
 
+    // Check on initial mount
+    checkHashForVideo();
+
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', checkHashForVideo);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', checkHashForVideo);
+    };
   }, []);
 
   // Auto-dismiss tooltip after 7 seconds
