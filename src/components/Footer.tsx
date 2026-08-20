@@ -44,7 +44,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToGallery }) => {
               Gallery
             </a>
             <a href="#about" className="hover:text-white transition-colors">Services</a>
-            <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
+            <a href="#contact" className="hover:text-white transition-colors">Pricing & Quotes</a>
             <a href="#faq-assistant" className="hover:text-white transition-colors">Studio Q&A</a>
             <a href="#workflow" className="hover:text-white transition-colors">Workflow</a>
             <a

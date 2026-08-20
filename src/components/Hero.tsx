@@ -4,9 +4,25 @@ import { Play, Sparkles, ArrowRight, Zap, Shield, Flame, CheckCircle, Video, Clo
 interface HeroProps {
   onExplorePortfolio: () => void;
   onSelectFeaturedVideo: () => void;
+  onGetQuote?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onExplorePortfolio, onSelectFeaturedVideo }) => {
+export const Hero: React.FC<HeroProps> = ({
+  onExplorePortfolio,
+  onSelectFeaturedVideo,
+  onGetQuote,
+}) => {
+  const handleQuoteClick = () => {
+    if (onGetQuote) {
+      onGetQuote();
+    } else {
+      const contactEl = document.getElementById('contact');
+      if (contactEl) {
+        contactEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -56,15 +72,25 @@ export const Hero: React.FC<HeroProps> = ({ onExplorePortfolio, onSelectFeatured
             </div>
 
             {/* CTAs */}
-            <div className="pt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div className="pt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5">
               <a
                 href="mailto:kiramorganai@gmail.com?subject=New%20Ad%20Campaign%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20interested%20in%20creating%20performance%20ad%20content%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AContent%20Type%20(15-30s%20/%2030-60s%20/%2060s%20/%20Hook%20Pack%20/%20Custom):%20%0ATarget%20Launch%20Date:%20%0A"
                 id="hero-cta-mailto"
-                className="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg shadow-black/40 text-sm active:scale-95"
+                className="bg-white text-black px-7 py-4 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg shadow-black/40 text-sm active:scale-95"
               >
                 <span>Start a Project</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
+
+              <button
+                type="button"
+                id="hero-cta-quote"
+                onClick={handleQuoteClick}
+                className="px-6 py-4 rounded-full bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/40 text-sm font-semibold transition-all duration-200 flex items-center justify-center gap-2 shadow-md active:scale-95"
+              >
+                <Sparkles className="w-4 h-4 text-blue-400 group-hover:text-white" />
+                <span>Get a Quote</span>
+              </button>
 
               <button
                 type="button"

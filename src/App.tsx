@@ -3,7 +3,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PortfolioGrid } from './components/PortfolioGrid';
 import { AboutServicesCombined } from './components/AboutServicesCombined';
-import { PricingSection } from './components/PricingSection';
 import { WorkflowSection } from './components/WorkflowSection';
 import { GeminiChatbot } from './components/GeminiChatbot';
 import { Contact } from './components/Contact';
@@ -61,6 +60,13 @@ export default function App() {
     }
   };
 
+  const handleGetQuote = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleSelectFeaturedVideo = () => {
     setSelectedVideo(PORTFOLIO_VIDEOS[0]);
   };
@@ -89,6 +95,7 @@ export default function App() {
             <Hero
               onExplorePortfolio={handleExplorePortfolio}
               onSelectFeaturedVideo={handleSelectFeaturedVideo}
+              onGetQuote={handleGetQuote}
             />
 
             {/* Homepage Portfolio Grid (Exactly 4 videos in 2x2 with View Full Gallery CTA) */}
@@ -99,9 +106,6 @@ export default function App() {
 
             {/* Combined About & Specialized Services Section */}
             <AboutServicesCombined />
-
-            {/* 5-Tier Pricing Section (Lowest to Highest) */}
-            <PricingSection />
 
             {/* 48h Production Workflow */}
             <WorkflowSection />
@@ -128,7 +132,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* Contact Section */}
+            {/* Quick-Tier Contact & Pricing Section (Single source of pricing) */}
             <Contact />
           </main>
 
