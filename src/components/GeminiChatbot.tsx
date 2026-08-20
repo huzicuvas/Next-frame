@@ -68,8 +68,8 @@ const STARTER_PROMPTS = [
     mode: 'faq' as ChatMode,
   },
   {
-    label: '💰 What are your 4 pricing tiers & packages?',
-    prompt: 'Can you explain Hook Frames Studio\'s 4 pricing tiers ($75 Single Video, $200 Hook Pack, $150 60s, and Custom Package) and what is included in each?',
+    label: '💰 What are your 5 pricing tiers?',
+    prompt: 'Can you explain Hook Frames Studio\'s 5 pricing tiers: 15-30s ($45), 30-60s ($100), 60s ($140), Hook Variation Pack (Quote), and Custom Brand Package (Quote)?',
     mode: 'pricing' as ChatMode,
   },
   {
@@ -87,7 +87,7 @@ const STARTER_PROMPTS = [
 const INITIAL_MESSAGE: ChatMessage = {
   id: 'init-1',
   role: 'assistant',
-  content: `👋 **Welcome to Hook Frames Studio Q&A & Pricing Desk!**\n\nAsk us anything about our ad production services:\n- **What we make:** Synthetic UGC creator ads, 3D CGI simulations & 3–5+ hook variation packs\n- **How we make it:** 100% crewless AI & CGI pipeline with 48-hour turnaround\n- **How much it costs:** Transparent pricing tiers ($75 Single, $200 Hook Pack, $150 60s, Custom quotes) & 100% commercial usage rights\n\n*Select a topic or click one of the questions below to get started.*`,
+  content: `👋 **Welcome to Hook Frames Studio Q&A & Pricing Desk!**\n\nAsk us anything about our ad production services:\n- **What we make:** Synthetic UGC creator ads, 3D CGI simulations & high-converting hook packs\n- **How we make it:** 100% crewless AI & CGI pipeline with 48-hour turnaround\n- **How much it costs:** Transparent pricing tiers ($45 for 15-30s, $100 for 30-60s, $140 for 60s, Hook Pack & Custom quotes) & 100% commercial usage rights\n\n*Select a topic or click one of the questions below to get started.*`,
   timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
   modelUsed: 'gemini-3.7-flash',
   modeUsed: 'faq',
@@ -227,7 +227,7 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-sm sm:text-base font-bold text-white tracking-tight flex items-center gap-1.5">
-                  Nextframe Studio Q&A & Pricing Desk
+                  Hook Frames Studio Q&A & Pricing Desk
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 </h3>
                 <span className="text-[10px] font-mono text-neutral-400 px-2 py-0.5 rounded-full bg-neutral-900 border border-neutral-800 hidden sm:inline-block">
@@ -345,7 +345,7 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({
                     <div className="flex items-center justify-between gap-4 mb-2 pb-1.5 border-b border-neutral-800 text-[10px] font-mono text-neutral-400">
                       <div className="flex items-center gap-1.5">
                         <span className="text-blue-400 font-semibold uppercase">
-                          {msg.modeUsed ? MODES.find((m) => m.id === msg.modeUsed)?.name : 'AI Strategist'}
+                          {msg.modeUsed ? MODES.find((m) => m.id === msg.modeUsed)?.name : 'Hook Frames Studio Advisor'}
                         </span>
                         {msg.modelUsed && (
                           <>
@@ -387,10 +387,10 @@ export const GeminiChatbot: React.FC<GeminiChatbotProps> = ({
                         )}
                       </button>
                       <a
-                        href={`mailto:hello@nextframe.studio?subject=Request%20Production%20of%20AI%20Generated%20Concept&body=${encodeURIComponent(
-                          'Hi Nextframe team,\n\nI created this ad concept using your AI Strategist:\n\n' +
+                        href={`mailto:kiramorganai@gmail.com?subject=Inquiry%20for%20Ad%20Creative%20Production&body=${encodeURIComponent(
+                          'Hi Hook Frames Studio team,\n\nI want to produce this ad format:\n\n' +
                             msg.content +
-                            '\n\nPlease provide a production estimate and timeline.'
+                            '\n\nPlease provide next steps and turnaround.'
                         )}`}
                         className="text-neutral-400 hover:text-blue-400 transition-colors flex items-center gap-1"
                       >

@@ -3,7 +3,7 @@ import { Mail, Copy, Check, ArrowRight, Sparkles, Send, Clock, ShieldCheck } fro
 
 export const Contact: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const email = 'hello@hookframes.studio';
+  const email = 'kiramorganai@gmail.com';
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
@@ -13,23 +13,28 @@ export const Contact: React.FC = () => {
 
   const emailTemplates = [
     {
-      label: '⚡ Single Video ($75)',
-      subject: 'Single Video Ad Inquiry ($75)',
-      body: "Hi Hook Frames Studio Team,%0A%0AWe want to order a single video ad for our brand.%0A%0ABrand Name: %0AProduct URL: %0AAd Angle Idea: %0A",
+      label: '⚡ 15-30s Video ($45)',
+      subject: 'Inquiry for 15-30 Second Video',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe want to order a 15-30 second video ad for our brand.%0A%0ABrand Name: %0AProduct URL: %0AAd Angle / Hook Idea: %0A",
     },
     {
-      label: '🔥 Hook Variation Pack ($200)',
-      subject: 'Hook Variation Pack Inquiry ($200)',
-      body: "Hi Hook Frames Studio Team,%0A%0AWe want to test a 3-video Hook Variation Pack for our brand.%0A%0ABrand Name: %0AProduct URL: %0ATarget Platform (Meta/TikTok): %0A",
+      label: '🎬 30-60s Video ($100)',
+      subject: 'Inquiry for 30-60 Second Video',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for a 30-60 second video ad for our brand.%0A%0ABrand Name: %0AProduct URL: %0A",
     },
     {
-      label: '🎬 60-Second Video ($150)',
-      subject: '60-Second Video Ad Inquiry ($150)',
-      body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for a full 60-second in-depth video ad.%0A%0ABrand Name: %0AProduct Category: %0A",
+      label: '🎥 60s Video ($140)',
+      subject: 'Inquiry for 60 Second Video',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for a full 60-second in-depth narrative video ad.%0A%0ABrand Name: %0AProduct Category: %0A",
+    },
+    {
+      label: '🔥 Hook Variation Pack',
+      subject: 'Inquiry for Hook Variation Pack',
+      body: "Hi Hook Frames Studio Team,%0A%0AWe want to request a quote for a 3-video Hook Variation Pack (different opening hooks).%0A%0ABrand Name: %0AProduct URL: %0ATarget Platform (Meta/TikTok): %0A",
     },
     {
       label: '📦 Custom Brand Package',
-      subject: 'Custom Brand Package & Retainer Inquiry',
+      subject: 'Inquiry for Custom Brand Package',
       body: "Hi Hook Frames Studio Team,%0A%0AWe're looking for custom monthly volume or multi-SKU video ad production.%0A%0ABrand Name: %0AMonthly Volume / SKUs: %0A",
     },
   ];
@@ -61,12 +66,12 @@ export const Contact: React.FC = () => {
           {/* Primary Mailto Action */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
             <a
-              href={`mailto:${email}?subject=New%20Ad%20Creative%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20interested%20in%20creating%20performance%20ad%20content%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AFormat%20Needed%20(Single%20Video%20/%20Hook%20Pack%20/%2060s%20Video%20/%20Custom):%20%0ATarget%20Launch%20Date:%20%0A`}
+              href={`mailto:${email}?subject=New%20Ad%20Creative%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20interested%20in%20creating%20performance%20ad%20content%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AFormat%20Needed%20(15-30s%20/%2030-60s%20/%2060s%20/%20Hook%20Pack%20/%20Custom):%20%0ATarget%20Launch%20Date:%20%0A`}
               id="contact-mailto-btn"
               className="group flex items-center justify-center gap-2.5 w-full sm:w-auto px-8 py-4 rounded-full bg-white hover:bg-blue-500 hover:text-white text-black text-sm font-bold transition-all duration-200 shadow-lg active:scale-95"
             >
               <Send className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-              <span>Email Hook Frames Studio</span>
+              <span>Email {email}</span>
             </a>
 
             {/* Quick 1-Click Email Copy */}

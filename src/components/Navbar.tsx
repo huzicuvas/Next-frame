@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Mail, ArrowUpRight, Menu, X, Video } from 'lucide-react';
+import { Sparkles, Mail, ArrowUpRight, Menu, X, Video, Grid } from 'lucide-react';
 import { HookFramesLogo } from './HookFramesLogo';
 
 interface NavbarProps {
   onOpenContact?: () => void;
+  onNavigateToGallery?: () => void;
+  onNavigateHome?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenContact,
+  onNavigateToGallery,
+  onNavigateHome,
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,12 +26,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   const navLinks = [
     { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Gallery', href: '/gallery', isGallery: true },
     { name: 'Services', href: '#about' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Q&A & Studio FAQ', href: '#faq-assistant' },
     { name: 'Workflow', href: '#workflow' },
     { name: 'Contact', href: '#contact' },
   ];
+
+  const handleLinkClick = (e: React.MouseEvent, link: typeof navLinks[0]) => {
+    if (link.isGallery && onNavigateToGallery) {
+      e.preventDefault();
+      onNavigateToGallery();
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (onNavigateHome) {
+      e.preventDefault();
+      onNavigateHome();
+    }
+  };
 
   return (
     <header
@@ -39,8 +61,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo with exact Dark Background Icon + White Typography */}
         <a
-          href="#"
+          href="/"
           id="nav-logo"
+          onClick={handleLogoClick}
           className="group flex items-center focus:outline-none"
         >
           <HookFramesLogo size="md" />
@@ -52,7 +75,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
             <a
               key={link.name}
               href={link.href}
-              className="px-3 py-1 rounded-full hover:text-white hover:bg-neutral-800 transition-all duration-200"
+              onClick={(e) => handleLinkClick(e, link)}
+              className={`px-3 py-1 rounded-full hover:text-white hover:bg-neutral-800 transition-all duration-200 ${
+                link.isGallery ? 'text-blue-400 font-semibold' : ''
+              }`}
             >
               {link.name}
             </a>
@@ -67,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
           </div>
 
           <a
-            href="mailto:hello@hookframes.studio?subject=Ad%20Content%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20looking%20to%20produce%20high-converting%20ad%20creatives%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AFormat%20Needed%20(Single%20Video%20/%20Hook%20Pack%20/%2060s%20Video%20/%20Custom):%20%0AEstimated%20Timeline:%20%0A"
+            href="mailto:kiramorganai@gmail.com?subject=Ad%20Content%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20looking%20to%20produce%20high-converting%20ad%20creatives%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AFormat%20Needed%20(15-30s%20/%2030-60s%20/%2060s%20/%20Hook%20Pack%20/%20Custom):%20%0AEstimated%20Timeline:%20%0A"
             id="nav-cta-mailto"
             className="group inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-black text-xs font-bold hover:bg-blue-500 hover:text-white transition-colors duration-200 shadow-md active:scale-95"
           >
@@ -99,8 +125,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 px-3 py-2 rounded-lg transition-colors"
+                onClick={(e) => handleLinkClick(e, link)}
+                className={`text-sm font-medium px-3 py-2 rounded-lg transition-colors ${
+                  link.isGallery
+                    ? 'text-blue-400 font-semibold bg-neutral-800/50'
+                    : 'text-neutral-300 hover:text-white hover:bg-neutral-800'
+                }`}
               >
                 {link.name}
               </a>
@@ -113,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
               <span>AI Pipeline Online • 48h Turnaround</span>
             </div>
             <a
-              href="mailto:hello@hookframes.studio?subject=Ad%20Content%20Inquiry%20-%20Hook%20Frames%20Studio"
+              href="mailto:kiramorganai@gmail.com?subject=Ad%20Content%20Inquiry%20-%20Hook%20Frames%20Studio"
               className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white hover:bg-blue-500 hover:text-white text-black text-sm font-bold transition-colors"
             >
               <Mail className="w-4 h-4" />

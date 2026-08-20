@@ -2,8 +2,8 @@ import { VideoItem } from '../types';
 
 /**
  * Hook Frames Studio - Portfolio Showcase Data
- * Reduced to 5 curated ad format style templates ready for custom brand video uploads.
- * Each card includes a "Sample Style" badge.
+ * Curated ad format style blueprints ready for custom brand video uploads.
+ * Each card includes a "Sample Style" badge and detailed framework metadata.
  */
 export const PORTFOLIO_VIDEOS: VideoItem[] = [
   {
@@ -95,5 +95,59 @@ export const PORTFOLIO_VIDEOS: VideoItem[] = [
       roas: '5.3x',
     },
     tags: ['Fluid Sim', '3D Packaging', 'Macro Texture', 'Sample Style'],
+  },
+  {
+    id: 'sample-style-asmr-unboxing',
+    title: 'Tactile ASMR Unboxing & Macro Texture',
+    brand: 'E-commerce / Accessories Slot',
+    category: 'Tech',
+    thumbnailUrl: '',
+    videoUrl: '',
+    duration: '0:19',
+    aspectRatio: '9:16',
+    hookHeadline: '"Listen to this magnetic snap... the most satisfying tactile feel ever designed."',
+    description: 'Microphone-close ASMR sound design, precision studio lighting, matte texture focus, and zero-clutter unboxing pacing.',
+    metrics: {
+      hookRate: '51.3%',
+      ctr: '4.9%',
+      roas: '4.4x',
+    },
+    tags: ['ASMR Audio', 'Unboxing', 'Tactile Macro', 'Sample Style'],
+  },
+  {
+    id: 'sample-style-founder-story-direct',
+    title: 'Authentic Founder Origin Pitch',
+    brand: 'Direct-to-Consumer Brand Slot',
+    category: 'Testimonial',
+    thumbnailUrl: '',
+    videoUrl: '',
+    duration: '0:28',
+    aspectRatio: '9:16',
+    hookHeadline: '"We built this in our garage because every alternative broke in 3 months..."',
+    description: 'Direct-to-camera storytelling with documentary B-roll cutaways, sketch overlay graphics, and trust-building social proof.',
+    metrics: {
+      hookRate: '46.7%',
+      ctr: '4.1%',
+      roas: '3.8x',
+    },
+    tags: ['Founder POV', 'Brand Story', 'Direct Pitch', 'Sample Style'],
+  },
+  {
+    id: 'sample-style-split-screen-comparison',
+    title: 'Side-by-Side Competitor Comparison',
+    brand: 'Wellness & Daily Care Slot',
+    category: 'Beauty',
+    thumbnailUrl: '',
+    videoUrl: '',
+    duration: '0:16',
+    aspectRatio: '9:16',
+    hookHeadline: '"Left: Regular department store brand vs. Right: 100% bio-active formula."',
+    description: 'High-contrast split-screen demonstrating instant absorption, ingredient transparency, and real-time visual proof.',
+    metrics: {
+      hookRate: '53.0%',
+      ctr: '5.0%',
+      roas: '4.5x',
+    },
+    tags: ['Split Screen', 'Comparison', 'Visual Proof', 'Sample Style'],
   },
 ];

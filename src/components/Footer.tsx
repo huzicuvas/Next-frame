@@ -1,10 +1,21 @@
 import React from 'react';
-import { ArrowUp, Mail, Video, Sparkles, Heart } from 'lucide-react';
+import { ArrowUp, Mail, Video, Sparkles } from 'lucide-react';
 import { HookFramesLogo } from './HookFramesLogo';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigateToGallery?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigateToGallery }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleGalleryClick = (e: React.MouseEvent) => {
+    if (onNavigateToGallery) {
+      e.preventDefault();
+      onNavigateToGallery();
+    }
   };
 
   return (
@@ -25,15 +36,22 @@ export const Footer: React.FC = () => {
           {/* Quick Links */}
           <div className="flex flex-wrap items-center gap-5 text-xs font-mono text-neutral-400">
             <a href="#portfolio" className="hover:text-white transition-colors">Portfolio</a>
+            <a
+              href="/gallery"
+              onClick={handleGalleryClick}
+              className="text-blue-400 hover:text-blue-300 font-semibold transition-colors"
+            >
+              Gallery
+            </a>
             <a href="#about" className="hover:text-white transition-colors">Services</a>
             <a href="#pricing" className="hover:text-white transition-colors">Pricing</a>
             <a href="#faq-assistant" className="hover:text-white transition-colors">Studio Q&A</a>
             <a href="#workflow" className="hover:text-white transition-colors">Workflow</a>
             <a
-              href="mailto:hello@hookframes.studio"
+              href="mailto:kiramorganai@gmail.com"
               className="text-white hover:text-blue-400 font-bold transition-colors"
             >
-              hello@hookframes.studio
+              kiramorganai@gmail.com
             </a>
           </div>
 

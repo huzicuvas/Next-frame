@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PortfolioGrid } from './components/PortfolioGrid';
@@ -10,14 +10,49 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { VideoModal } from './components/VideoModal';
 import { DeveloperNoteModal } from './components/DeveloperNoteModal';
+import { GalleryPage } from './components/GalleryPage';
 import { PORTFOLIO_VIDEOS } from './data/portfolioData';
 import { VideoItem } from './types';
 import { Code2, Bot } from 'lucide-react';
 
 export default function App() {
+  const [currentPath, setCurrentPath] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.pathname;
+    }
+    return '/';
+  });
+
   const [selectedVideo, setSelectedVideo] = useState<VideoItem | null>(null);
   const [isDevGuideOpen, setIsDevGuideOpen] = useState(false);
   const [isFloatingChatOpen, setIsFloatingChatOpen] = useState(false);
+
+  // Sync route on popstate (browser back/forward)
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (path: string) => {
+    if (window.location.pathname !== path) {
+      window.history.pushState({}, '', path);
+      setCurrentPath(path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const navigateHome = () => {
+    navigateTo('/');
+  };
+
+  const navigateToGallery = () => {
+    navigateTo('/gallery');
+  };
 
   const handleExplorePortfolio = () => {
     const portfolioSection = document.getElementById('portfolio');
@@ -30,61 +65,79 @@ export default function App() {
     setSelectedVideo(PORTFOLIO_VIDEOS[0]);
   };
 
+  const isGalleryView = currentPath === '/gallery' || currentPath === '/gallery/';
+
   return (
     <div className="min-h-screen bg-[#0A0A0B] text-[#E2E8F0] font-sans selection:bg-blue-500/30 selection:text-blue-200">
-      {/* Navigation */}
-      <Navbar />
-
-      {/* Main Content Sections */}
-      <main>
-        {/* Hero Section */}
-        <Hero
-          onExplorePortfolio={handleExplorePortfolio}
-          onSelectFeaturedVideo={handleSelectFeaturedVideo}
+      {isGalleryView ? (
+        /* Full Gallery View at /gallery */
+        <GalleryPage
+          onNavigateHome={navigateHome}
+          onSelectVideo={(video) => setSelectedVideo(video)}
         />
+      ) : (
+        /* Standard Homepage View */
+        <>
+          {/* Top Sticky Navigation */}
+          <Navbar
+            onNavigateToGallery={navigateToGallery}
+            onNavigateHome={navigateHome}
+          />
 
-        {/* Portfolio Grid Section (5 Curated Items with "Sample Style" badges) */}
-        <PortfolioGrid onSelectVideo={(video) => setSelectedVideo(video)} />
+          <main>
+            {/* Hero Section */}
+            <Hero
+              onExplorePortfolio={handleExplorePortfolio}
+              onSelectFeaturedVideo={handleSelectFeaturedVideo}
+            />
 
-        {/* Combined About & Specialized Services Section (shorter single section) */}
-        <AboutServicesCombined />
+            {/* Homepage Portfolio Grid (Exactly 4 videos in 2x2 with View Full Gallery CTA) */}
+            <PortfolioGrid
+              onSelectVideo={(video) => setSelectedVideo(video)}
+              onNavigateToGallery={navigateToGallery}
+            />
 
-        {/* Transparent Pricing Section (4 tiers between services and contact) */}
-        <PricingSection />
+            {/* Combined About & Specialized Services Section */}
+            <AboutServicesCombined />
 
-        {/* 48h Production Workflow */}
-        <WorkflowSection />
+            {/* 5-Tier Pricing Section (Lowest to Highest) */}
+            <PricingSection />
 
-        {/* Gemini Studio Q&A & Pricing Section */}
-        <section id="faq-assistant" className="py-16 bg-[#0A0A0B] border-t border-neutral-800/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-mono text-neutral-300 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                <span>INTERACTIVE STUDIO Q&A & PRICING DESK</span>
+            {/* 48h Production Workflow */}
+            <WorkflowSection />
+
+            {/* Gemini Studio Q&A & Pricing Section */}
+            <section id="faq-assistant" className="py-16 bg-[#0A0A0B] border-t border-neutral-800/80">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-2xl mb-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-mono text-neutral-300 mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                    <span>INTERACTIVE STUDIO Q&A & PRICING DESK</span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+                    What We Make, How We Make It, & <br />
+                    <span className="text-neutral-400">Pricing & Commercial Terms.</span>
+                  </h2>
+                  <p className="text-sm sm:text-base text-neutral-400 mt-2 font-normal">
+                    Ask our interactive studio assistant anything about deliverables, batch pricing, the 48-hour production pipeline, or commercial rights.
+                  </p>
+                </div>
+
+                {/* Embedded Bento Chatbot */}
+                <GeminiChatbot />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
-                What We Make, How We Make It, & <br />
-                <span className="text-neutral-400">Pricing & Commercial Terms.</span>
-              </h2>
-              <p className="text-sm sm:text-base text-neutral-400 mt-2 font-normal">
-                Ask our interactive studio assistant anything about deliverables, batch pricing, the 48-hour production pipeline, or commercial rights.
-              </p>
-            </div>
+            </section>
 
-            {/* Embedded Bento Chatbot */}
-            <GeminiChatbot />
-          </div>
-        </section>
+            {/* Contact Section */}
+            <Contact />
+          </main>
 
-        {/* Contact Section: Simple mailto button & tier templates */}
-        <Contact />
-      </main>
+          {/* Footer with Hook Frames Studio Logo */}
+          <Footer onNavigateToGallery={navigateToGallery} />
+        </>
+      )}
 
-      {/* Footer with Hook Frames Studio Logo */}
-      <Footer />
-
-      {/* Video Player Modal */}
+      {/* Video Player Modal (Active across both Homepage and Gallery) */}
       <VideoModal
         video={selectedVideo}
         onClose={() => setSelectedVideo(null)}

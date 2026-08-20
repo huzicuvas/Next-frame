@@ -58,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplorePortfolio, onSelectFeatured
             {/* CTAs */}
             <div className="pt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <a
-                href="mailto:hello@hookframes.studio?subject=New%20Ad%20Campaign%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20interested%20in%20creating%20performance%20ad%20content%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AContent%20Type%20(Single%20Video%20/%20Hook%20Pack%20/%2060s%20Video%20/%20Custom):%20%0ATarget%20Launch%20Date:%20%0A"
+                href="mailto:kiramorganai@gmail.com?subject=New%20Ad%20Campaign%20Inquiry%20-%20Hook%20Frames%20Studio&body=Hi%20Hook%20Frames%20Studio%20Team,%0A%0AWe're%20interested%20in%20creating%20performance%20ad%20content%20for%20our%20brand.%0A%0ABrand%20Name:%20%0AWebsite%20/%20Product%20Link:%20%0AContent%20Type%20(15-30s%20/%2030-60s%20/%2060s%20/%20Hook%20Pack%20/%20Custom):%20%0ATarget%20Launch%20Date:%20%0A"
                 id="hero-cta-mailto"
                 className="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg shadow-black/40 text-sm active:scale-95"
               >
